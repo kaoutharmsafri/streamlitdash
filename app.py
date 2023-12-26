@@ -15,8 +15,10 @@ st.set_page_config(
 
 st.title('My Streamlit Data Dashboard')
 def load_data():
-    csv_path = "./Road_Accident_Data.csv"
-    data = pd.read_csv(csv_path, delimiter=';')
+    # csv_path = "./Road_Accident_Data.csv"
+    # data = pd.read_csv(csv_path, delimiter=';')
+    uploaded_file = st.file_uploader("Road Accident Data.csv", type="csv")
+    data = pd.read_csv(uploaded_file, delimiter=';')
     data['Accident Date'] = pd.to_datetime(data['Accident Date'], format='%d/%m/%Y')
     # Extract year, month, and date into separate columns
     data['Year'] = data['Accident Date'].dt.year
